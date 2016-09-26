@@ -1,7 +1,7 @@
 # Commands
 
 mysql login<br>
-mysql -u <username> -p <password>
+mysql -u username -p
 
 
 Postgres Restore command localhost
