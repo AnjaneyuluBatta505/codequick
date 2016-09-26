@@ -1,5 +1,9 @@
 # Commands
 
+mysql login
+mysql -u <username> -p <password>
+
+
 Postgres Restore command localhost
 
 psql -U postgres -h <server-name>  database_name <  db_dump.sql
