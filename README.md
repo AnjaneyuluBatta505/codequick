@@ -1,6 +1,6 @@
 # Commands
 
-mysql login
+mysql login<br>
 mysql -u <username> -p <password>
 
 
