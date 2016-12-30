@@ -6,7 +6,8 @@ $ mysql -u username -p
 mysql dump
 $ mysqldump -u [uname] -p[pass] db_name > db_backup.sql
 
-
+mysql restore
+$ mysql -u <user> -p < db_backup.dump
 
 Postgres Restore command localhost
 
