@@ -29,3 +29,8 @@ Postgres Database Dump Command<br>
 ```{r, engine='bash', count_lines}
 $ pg_dump -h localhost -U postgres database_name > filename.sql
 ```
+
+Restore Local database to Heroku <br>
+```{r, engine='bash', count_lines}
+$ heroku pg:psql --app cinema-wiki < latest.dump
+```
