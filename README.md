@@ -34,3 +34,12 @@ Restore Local database to Heroku <br>
 ```{r, engine='bash', count_lines}
 $ heroku pg:psql --app appname < latest.dump
 ```
+
+List All open ports in linux
+```{r, engine='bash', count_lines}
+$ netstat -lntu
+```
+List Process name with given port 
+```{r, engine='bash', count_lines}
+sudo ss -lptn 'sport = :8080'
+```
