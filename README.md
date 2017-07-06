@@ -1,4 +1,10 @@
 # Commands<br>
+Python3 virtualenv<br>
+``` {r, engine='bash', count_lines}
+$ virtualenv -p python3 env
+```
+
+
 
 mysql login<br>
 ``` {r, engine='bash', count_lines}
