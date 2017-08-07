@@ -49,3 +49,8 @@ List Process name with given port
 ```{r, engine='bash', count_lines}
 sudo ss -lptn 'sport = :8080'
 ```
+
+Find a pattern in a directory recursively
+```{r, engine='bash', count_lines}
+grep -nr 'pattern to find ' dir_name/
+```
