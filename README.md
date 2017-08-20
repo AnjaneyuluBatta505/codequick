@@ -43,7 +43,7 @@ $ heroku pg:psql --app appname < latest.dump
 
 List All open ports in linux
 ```{r, engine='bash', count_lines}
-$ netstat -lntu
+$ netstat -tulpn
 ```
 List Process name with given port 
 ```{r, engine='bash', count_lines}
