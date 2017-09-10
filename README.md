@@ -1,4 +1,11 @@
 # Commands<br>
+Install python pip on Ubuntu
+```
+$ sudo apt-get install python-pip python-dev build-essential 
+$ sudo pip install --upgrade pip 
+$ sudo pip install --upgrade virtualenv
+```
+
 Python3 virtualenv<br>
 ``` {r, engine='bash', count_lines}
 $ virtualenv -p python3 env
