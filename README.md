@@ -1,4 +1,10 @@
 # Commands<br>
+Install postgres database ubuntu
+```
+sudo apt-get update
+sudo apt-get install postgresql postgresql-contrib
+```
+
 Install python pip on Ubuntu
 ```
 $ sudo apt-get install python-pip python-dev build-essential 
