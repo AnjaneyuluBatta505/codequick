@@ -67,3 +67,7 @@ Find a pattern in a directory recursively
 ```{r, engine='bash', count_lines}
 grep -nr 'pattern to find ' dir_name/
 ```
+Deleting all .pyc files from a folder
+```{r, engine='bash', count_lines}
+find . -name '*.pyc' -delete
+```
