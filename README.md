@@ -60,7 +60,7 @@ $ netstat -tulpn
 ```
 List Process name with given port 
 ```{r, engine='bash', count_lines}
-sudo ss -lptn 'sport = :8080'
+sudo ss -ltpn 'sport = :8080'
 ```
 
 Find a pattern in a directory recursively
