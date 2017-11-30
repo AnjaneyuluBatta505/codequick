@@ -74,5 +74,8 @@ sudo kill -9 $(sudo lsof -t -i:9001)
 sudo fuser -n tcp -k 9001 
 
 ```
-
+Kill all process of uwsgi
+```{r, engine='bash', count_lines}
+kill `pidof uwsgi`
+```
 
