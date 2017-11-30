@@ -67,3 +67,12 @@ Find a pattern in a directory recursively
 ```{r, engine='bash', count_lines}
 grep -nr 'pattern to find ' dir_name/
 ```
+kill a process on a port on ubuntu port 9001
+```{r, engine='bash', count_lines}
+sudo kill -9 $(sudo lsof -t -i:9001)
+# or
+sudo fuser -n tcp -k 9001 
+
+```
+
+
