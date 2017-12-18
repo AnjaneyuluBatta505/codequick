@@ -78,4 +78,16 @@ Kill all process of uwsgi
 ```{r, engine='bash', count_lines}
 kill `pidof uwsgi`
 ```
+restart supervisor
+```{r, engine='bash', count_lines}
+service supervisor restart
+# or
+systemctl restart supervisor
+```
+supervisor uwsgi: ERROR (spawn error)
+```{r, engine='bash', count_lines}
+sudo supervisorctl reload
+sudo supervisorctl update
+supervisorctl start all
+```
 
