@@ -43,6 +43,17 @@ $ sudo -u postgres psql postgres
 Postgres Restore command localhost<br>
 ```{r, engine='bash', count_lines}
 $ psql -U postgres -h <server-name>  database_name <  db_dump.sql
+# or 
+
+create backup
+pg_dump -i -h localhost -p 5432 -U postgres -F c -b -v -f 
+"/usr/local/backup/10.70.0.61.backup" old_db
+restore from backup
+
+pg_restore -i -h localhost -p 5432 -U postgres -d old_db -v 
+"/usr/local/backup/10.70.0.61.backup"
+important to set -h localhost - option
+
 ```
 Postgres Database Dump Command<br>
 ```{r, engine='bash', count_lines}
