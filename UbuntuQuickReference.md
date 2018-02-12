@@ -101,4 +101,12 @@ sudo supervisorctl reload
 sudo supervisorctl update
 supervisorctl start all
 ```
-
+usage of `rsync`</br>
+copy file from local machine to server
+```{r, engine='bash', count_lines}
+rsync -avz -e "ssh -i /path/to/key.pem" /path/to/file.txt  <username>@<ip/domain>:/path/to/directory/
+```
+copy file from server to local machine
+```{r, engine='bash', count_lines}
+rsync -avz -e "ssh -i /path/to/key.pem" <username>@<ip/domain>:/path/to/directory/file.txt  /path/to/directory/
+```
