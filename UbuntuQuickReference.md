@@ -110,3 +110,9 @@ copy file from server to local machine
 ```{r, engine='bash', count_lines}
 rsync -avz -e "ssh -i /path/to/key.pem" <username>@<ip/domain>:/path/to/directory/file.txt  /path/to/directory/
 ```
+rsync flags
+```{r, engine='bash', count_lines}
+--ignore-existing
+--update
+--dry-run 
+```
