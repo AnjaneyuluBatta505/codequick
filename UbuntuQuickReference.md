@@ -112,7 +112,7 @@ rsync -avz -e "ssh -i /path/to/key.pem" <username>@<ip/domain>:/path/to/director
 ```
 rsync flags
 ```{r, engine='bash', count_lines}
---ignore-existing
---update
---dry-run 
+--ignore-existing  # skips the files if file with the name already exists
+--update           # updates files based on modification date
+--dry-run          # to see the test changes
 ```
