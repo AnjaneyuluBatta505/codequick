@@ -1,5 +1,6 @@
 
-# For each Loop
+# jQuery Quick Reference
+* for each loop
 ```javascript
 options = ''
 $.each(response.data, function(index, value){
