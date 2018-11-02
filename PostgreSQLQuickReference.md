@@ -9,3 +9,7 @@ SELECT setval('committees_id_seq', (SELECT max(id) FROM committees));
 ```sql
 pg_restore -h <hostname> -U <user_name> -d <database_name> -t <table_name>  <database_dump_file>
 ```
+# copy data from table1 to table2
+```sql
+INSERT INTO table2(col1, col2) select col1, col2 from table1;
+```
