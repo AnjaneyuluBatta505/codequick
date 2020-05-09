@@ -122,4 +122,5 @@ rsync flags
 
 ```
 sudo apt-get install kazam audacity avidmux
+sudo apt-get install pulseaudio-equalizer
 ```
