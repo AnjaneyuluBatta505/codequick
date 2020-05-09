@@ -116,3 +116,10 @@ rsync flags
 --update           # updates files based on modification date
 --dry-run          # to see the test changes
 ```
+
+
+## ubuntu screen recording and audio, video editing softwares
+
+```
+sudo apt-get install kazam audacity avidmux
+```
