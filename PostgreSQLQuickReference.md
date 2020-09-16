@@ -1,21 +1,26 @@
 # PostgreSQL Quick Reference
-* set auto increment value of a table column
+## set auto increment value of a table column
 ```sql
 SELECT setval('<table_name>_<auto_inc_column_name>', (SELECT max(id) FROM <table_name>));
 # example
 SELECT setval('committees_id_seq', (SELECT max(id) FROM committees));
 ```
-* restore a single table from a database dump
+## restore a single table from a database dump
 ```sql
 pg_restore -h <hostname> -U <user_name> -d <database_name> -t <table_name>  <database_dump_file>
 ```
-* dump database from postgres server
+## dump database from postgres server
 
 ```sql
 pg_dump -v -U <username> -h <host> <db name> > <file_name.dump>
 ```
 
-* copy data from table1 to table2
+## copy data from table1 to table2
 ```sql
 INSERT INTO table2(col1, col2) select col1, col2 from table1;
+```
+## rename database
+
+```
+ALTER DATABASE <db name> RENAME TO <new db name>;
 ```
