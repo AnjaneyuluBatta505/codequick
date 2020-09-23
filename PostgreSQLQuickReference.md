@@ -24,3 +24,9 @@ INSERT INTO table2(col1, col2) select col1, col2 from table1;
 ```
 ALTER DATABASE <db name> RENAME TO <new db name>;
 ```
+
+## find size of the database
+
+```sql
+SELECT pg_size_pretty(pg_database_size('{database name}'));
+```
