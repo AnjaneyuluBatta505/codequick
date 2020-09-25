@@ -36,3 +36,8 @@ SELECT pg_size_pretty(pg_database_size('{database name}'));
 ```sql
 select version();
 ```
+
+## find table size
+```sql
+SELECT pg_size_pretty( pg_total_relation_size('tablename') );
+```
