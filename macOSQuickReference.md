@@ -16,4 +16,5 @@ brew install pyenv
 
 ```
 pyenv install 3.6.5
+pyenv global 3.6.5
 ```
