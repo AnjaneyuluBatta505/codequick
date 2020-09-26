@@ -18,3 +18,18 @@ brew install pyenv
 pyenv install 3.6.5
 pyenv global 3.6.5
 ```
+
+### install virtualenvwrapper mac
+
+```
+echo 'export PATH="/usr/local/opt/python/libexec/bin:/usr/local/sbin:$PATH"' >> ~/.zshrc
+pip install virtualenv
+pip install virtualenvwrapper
+```
+add below lines to `.zshrc`
+
+```
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/workspace
+source /usr/local/bin/virtualenvwrapper.sh
+```
