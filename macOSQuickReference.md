@@ -29,7 +29,9 @@ pip install virtualenvwrapper
 add below lines to `.zshrc`
 
 ```
+# Configuration for virtualenv
 export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/workspace
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 source /usr/local/bin/virtualenvwrapper.sh
 ```
