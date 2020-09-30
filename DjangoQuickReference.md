@@ -65,3 +65,10 @@ class ProfilerMiddleware(MiddlewareMixin):
 		print(s.getvalue())
 		return response
 ```
+
+### get executed sql queries with execution times
+
+```python
+from django.db import connection
+print(connection.queries)
+```
