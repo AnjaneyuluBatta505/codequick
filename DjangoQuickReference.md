@@ -26,7 +26,7 @@ class Model(object):
         errors = []
         return errors
 
-class EasyPostLabel(Model, Model1):
+class ModelCls(Model, Model1):
     fk = models.ForeignKey(
             Model2,
             db_column='column_name',
@@ -40,4 +40,28 @@ class EasyPostLabel(Model, Model1):
         proxy = True
         app_label='app_name'
 
+```
+
+### profiler middleware to improve the django app performance
+
+```python
+import cProfile, pstats, io
+from django.utils.deprecation import MiddlewareMixin
+
+class ProfilerMiddleware(MiddlewareMixin):
+	def process_request(self, request):
+		pr = cProfile.Profile()
+		pr.enable()
+		request._pr = pr
+
+	def process_response(self, request, response):
+		request._pr.disable()
+		s = io.StringIO()
+		sortby = 'cumulative'
+		# Sort the output by cumulative time it took in fuctions/methods.
+		ps = pstats.Stats(request._pr, stream=s).sort_stats(sortby)
+		# Print only 100 most time consuming functions
+		ps.print_stats(100)
+		print(s.getvalue())
+		return response
 ```
