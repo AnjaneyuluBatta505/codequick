@@ -41,3 +41,9 @@ select version();
 ```sql
 SELECT pg_size_pretty( pg_total_relation_size('tablename') );
 ```
+
+## list all tables in a specific schema
+
+```sql
+select tablename from pg_tables where schemaname='public';
+```
