@@ -72,3 +72,23 @@ class ProfilerMiddleware(MiddlewareMixin):
 from django.db import connection
 print(connection.queries)
 ```
+
+
+### list all models in django project with table and columns
+```python
+from importlib import import_module
+from django.apps import apps
+from django.conf import settings
+
+def get_column_list_from_model(model):
+    return [field.column for field in model._meta.fields]
+
+def get_all_models_in_project():
+    models = apps.get_models()
+    # django.contrib.auth.models.Permission
+    for model in models:
+        table_name = model._meta.db_table
+        table_columns = get_column_list_from_model(model)
+        order = ",".join(table_columns)
+        print(f"{table_name}: {order}")
+```
