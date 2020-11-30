@@ -92,3 +92,23 @@ def get_all_models_in_project():
         order = ",".join(table_columns)
         print(f"{table_name}: {order}")
 ```
+
+### get all parent tables of a model
+
+```python
+from django.db.models.fields.related import OneToOneField, ForeignKey
+def get_parent_tables(model):
+    fields = model._meta.get_fields()
+    parent_tables = set()
+    related_fields = [
+        OneToOneField,
+        ForeignKey
+    ]
+    for field in fields:
+        if field.__class__ in related_fields:
+            related_model = field.related_model
+            tbl = related_model._meta.db_table
+            parent_tables.add(tbl)
+            parent_tables.update(get_parent_tables(related_model))
+    return parent_tables
+```
