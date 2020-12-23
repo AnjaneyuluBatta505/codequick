@@ -47,3 +47,8 @@ SELECT pg_size_pretty( pg_total_relation_size('tablename') );
 ```sql
 select tablename from pg_tables where schemaname='public';
 ```
+
+## drop not null of a column
+```sql
+ALTER TABLE django_content_type ALTER COLUMN name DROP NOT NULL;
+```
