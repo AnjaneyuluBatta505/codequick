@@ -112,3 +112,6 @@ def get_parent_tables(model):
             parent_tables.update(get_parent_tables(related_model))
     return parent_tables
 ```
+
+## Django packages
+- [django-model-utils](https://django-model-utils.readthedocs.io/en/latest/index.html)
