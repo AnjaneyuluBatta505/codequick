@@ -52,3 +52,8 @@ select tablename from pg_tables where schemaname='public';
 ```sql
 ALTER TABLE django_content_type ALTER COLUMN name DROP NOT NULL;
 ```
+
+### type casting
+```sql
+ALTER TABLE table ALTER COLUMN "mycolumn" TYPE numeric using value::numeric;
+```
