@@ -60,6 +60,7 @@ ALTER TABLE table ALTER COLUMN "mycolumn" TYPE numeric using value::numeric;
 
 ## create user and give all previliges on the database
 ```sql
-create user myuser with encrypted password 'secret';
-grant all privileges on database mydatabase to myuser;
+CREATE DATABASE yourdbname;
+CREATE USER youruser WITH ENCRYPTED PASSWORD 'yourpass';
+GRANT ALL PRIVILEGES ON DATABASE yourdbname TO youruser;
 ```
