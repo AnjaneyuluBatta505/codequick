@@ -57,3 +57,9 @@ ALTER TABLE django_content_type ALTER COLUMN name DROP NOT NULL;
 ```sql
 ALTER TABLE table ALTER COLUMN "mycolumn" TYPE numeric using value::numeric;
 ```
+
+## create user and give all previliges on the database
+```sql
+create user myuser with encrypted password 'secret';
+grant all privileges on database mydatabase to myuser;
+```
