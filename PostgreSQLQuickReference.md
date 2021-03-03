@@ -64,3 +64,7 @@ CREATE DATABASE yourdbname;
 CREATE USER youruser WITH ENCRYPTED PASSWORD 'yourpass';
 GRANT ALL PRIVILEGES ON DATABASE yourdbname TO youruser;
 ```
+## set increment column to max
+```sql
+SELECT setval(pg_get_serial_sequence('table_name', 'id'), MAX(id)) FROM table_name;
+```
