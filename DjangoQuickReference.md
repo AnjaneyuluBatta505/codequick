@@ -115,3 +115,5 @@ def get_parent_tables(model):
 
 ## Django packages
 - [django-model-utils](https://django-model-utils.readthedocs.io/en/latest/index.html)
+- [Testing with Factoryboy](https://factoryboy.readthedocs.io/en/stable/orms.html)
+- [Faker for generating the fake data](https://faker.readthedocs.io/en/master/index.html)
