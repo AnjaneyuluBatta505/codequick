@@ -68,3 +68,8 @@ GRANT ALL PRIVILEGES ON DATABASE yourdbname TO youruser;
 ```sql
 SELECT setval(pg_get_serial_sequence('table_name', 'id'), MAX(id)) FROM table_name;
 ```
+
+## Colose all database connections
+```sql
+ select pg_terminate_backend(pid) from pg_stat_activity where datname='<database name>';
+```
