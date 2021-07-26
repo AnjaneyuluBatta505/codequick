@@ -29,6 +29,8 @@ ALTER DATABASE <db name> RENAME TO <new db name>;
 
 ```sql
 SELECT pg_size_pretty(pg_database_size('{database name}'));
+-- Table Size
+SELECT pg_size_pretty(pg_relation_size('table_name'));
 ```
 
 ## postgres version
