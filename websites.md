@@ -8,5 +8,9 @@ https://app.diagrams.net/
 https://dbdiagram.io/d
 
 
+## design diagrams
+https://lucid.app/
+
+
 ## Nginx config/regex tester
 https://nginx.viraptor.info/
