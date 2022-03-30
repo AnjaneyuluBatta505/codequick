@@ -34,3 +34,7 @@
   ```bash
   git merge --abort
   ```
+* Revert last commit
+  ```
+  git reset --hard HEAD~1
+  ```
