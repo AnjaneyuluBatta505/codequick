@@ -14,3 +14,8 @@ https://lucid.app/
 
 ## Nginx config/regex tester
 https://nginx.viraptor.info/
+
+
+## Best python books
+
+- https://python.astrotech.io/
