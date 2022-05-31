@@ -19,3 +19,4 @@ https://nginx.viraptor.info/
 ## Best python books
 
 - https://python.astrotech.io/
+- https://livebook.manning.com/book/aws-lambda-in-action/
