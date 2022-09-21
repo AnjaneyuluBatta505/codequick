@@ -5,7 +5,7 @@
 
 ```sql
 SET SQL_SAFE_UPDATES = 0;
-SET SQL_SAFE_UPDATES = 0;
+SET SQL_SAFE_UPDATES = 1;
 ```
 
 ## set table auto-increment value
