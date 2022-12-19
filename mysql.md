@@ -14,3 +14,9 @@ SET SQL_SAFE_UPDATES = 1;
 ALTER TABLE <table name> AUTO_INCREMENT = <number>
 -- ALTER TABLE db.table AUTO_INCREMENT = 4
 ```
+
+## select current auto increment value of a table
+
+```sql
+SELECT IDENT_CURRENT('table_name');
+```
