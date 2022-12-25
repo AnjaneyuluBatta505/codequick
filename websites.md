@@ -19,6 +19,9 @@ https://lucid.app/
 https://nginx.viraptor.info/
 
 
+## html table to markdown
+https://jmalarcon.github.io/markdowntables/
+
 ## Best python books
 
 - https://python.astrotech.io/
