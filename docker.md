@@ -60,3 +60,10 @@ volumes:
   static_volume:
 # Ref: https://github.com/testdrivenio/django-docker-s3/blob/master/docker-compose.yml
 ```
+
+### docker access host from container
+
+```bash
+docker.for.mac.localhost # for mac
+host.docker.internal # for linux
+```
