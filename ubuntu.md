@@ -1,4 +1,5 @@
-# Ubuntu Quick Reference
+# Ubuntu
+
 Install postgres database ubuntu
 ```
 sudo apt-get update
