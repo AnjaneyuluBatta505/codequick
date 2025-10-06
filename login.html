@@ -1037,9 +1037,10 @@
       }
     }
 
-    function initButtonClick($btn) {
+    function initButtonClick() {
       const $buttons = getButtons();
       $(document).on('click', getSelector(), function () {
+        const $btn = $(this);
         if ($btn.hasClass('processing')) {
           return false;
         }
