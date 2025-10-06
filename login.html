@@ -1016,6 +1016,18 @@
       return $buttons;
     }
 
+    function addProcessingHandler() {
+      $(document).off('click.processing').on('click.processing', getSelector(), function (e) {
+        const $btn = $(this);
+        if ($btn.hasClass('processing')) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          return false;
+        }
+        $btn.addClass('processing');
+      });
+    }
+
     function removeProcessingClassFromButtons() {
       const $buttons = getButtons();
       for(const btn of $buttons) {
@@ -1026,26 +1038,16 @@
 
     function observeB2CValidation() {
       const apiElem = document.getElementById('api');
-      if (apiElem) {
-        const observer = new MutationObserver(() => {
-          const hasError = $('#api .error, #api .field-error').is(':visible');
-          if (hasError) {
-            removeProcessingClassFromButtons();
-          }
-        });
-        observer.observe(apiElem, { childList: true, subtree: true });
-      }
-    }
-
-    function initButtonClick() {
-      const $buttons = getButtons();
-      $(document).on('click', getSelector(), function () {
-        const $btn = $(this);
-        if ($btn.hasClass('processing')) {
-          return false;
+      if (!apiElem) return;
+      const observer = new MutationObserver(() => {
+        const hasError = $('#api .error:visible, #api .field-error:visible').length > 0;
+        if (hasError) {
+          removeProcessingClassFromButtons();
         }
-        $btn.addClass('processing');
+        // Reattach handlers after DOM mutations
+        addProcessingHandler();
       });
+      observer.observe(apiElem, { childList: true, subtree: true });
     }
 
     function removeProcessingOnUnload() {
@@ -1062,10 +1064,10 @@
 
     // ADD PROCESSING CLASS TO BUTTONS WHEN CLICKED
     function initButtonProcessingAnimation() {
-      initButtonClick();
+      addProcessingHandler();
       observeB2CValidation();
-      removeProcessingOnUnload();
       removeProcessingOnInputFocus();
+      removeProcessingOnUnload();
     }
 
     $(document).ready(function () {
