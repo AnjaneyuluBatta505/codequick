@@ -1032,9 +1032,8 @@
     // ADD PROCESSING CLASS TO BUTTONS WHEN CLICKED
     function initButtonProcessingAnimation() {
       const $buttons = $('#next, #continue, #emailVerificationControl_but_send_code, #emailVerificationControl_but_verify_code, #emailVerificationControl_but_change_claims, button[type="submit"]');
-      $(document).on('click', $buttons.selector, function (e) {
+      $buttons.on('click', function (e) {
         const $btn = $(this);
-        // Prevent double-click
         if ($btn.hasClass('processing')) {
           e.preventDefault();
           return false;
@@ -1044,7 +1043,7 @@
         observeB2CValidation($btn);
         removeProcessingOnUnload($btn);
         removeProcessingOnInputFocus($btn);
-      });
+      })
     }
 
     $(document).ready(function () {
