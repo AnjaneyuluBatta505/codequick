@@ -1021,10 +1021,14 @@
       // Delegate so it survives DOM refreshes
       $(document).off('click.b2cProcessing').on('click.b2cProcessing', getSelector(), function (e) {
         const $btn = $(this);
-        // Prevent double-click
-        if ($btn.hasClass('processing')) {
-          e.preventDefault();
-        } else {
+        // DO NOTHING IF ERRORS EXISTS
+        const hasError = $('#api .error:visible, #api .field-error:visible').length > 0;
+        if (hasError) {
+          removeProcessingClassFromButtons();
+          return false;
+        }
+
+        if (!$btn.hasClass('processing')) {
           $btn.addClass('processing');
         }
       });
