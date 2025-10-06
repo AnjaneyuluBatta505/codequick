@@ -1006,6 +1006,12 @@
     }
 
     // OBSERVE B2C VALIDATION TO REMOVE PROCESSING CLASS
+
+    function getButtons() {
+      const $buttons = $('#next, #continue, #emailVerificationControl_but_send_code, #emailVerificationControl_but_verify_code, #emailVerificationControl_but_change_claims, button[type="submit"]');
+      return $buttons;
+    }
+
     function observeB2CValidation($btn) {
       const apiElem = document.getElementById('api');
       if (apiElem) {
@@ -1025,17 +1031,16 @@
 
     function removeProcessingOnInputFocus($btn){
       $(document).on('focus input', 'input, select', () => {
-        $('button.processing').removeClass('processing');
+        $btn.removeClass('processing');
       });
     }
 
     // ADD PROCESSING CLASS TO BUTTONS WHEN CLICKED
     function initButtonProcessingAnimation() {
-      const $buttons = $('#next, #continue, #emailVerificationControl_but_send_code, #emailVerificationControl_but_verify_code, #emailVerificationControl_but_change_claims, button[type="submit"]');
-      $buttons.on('click', function (e) {
+      const $buttons = getButtons();
+      $buttons.on('click', function () {
         const $btn = $(this);
         if ($btn.hasClass('processing')) {
-          e.preventDefault();
           return false;
         }
         // Add processing style
@@ -1043,7 +1048,7 @@
         observeB2CValidation($btn);
         removeProcessingOnUnload($btn);
         removeProcessingOnInputFocus($btn);
-      })
+      });
     }
 
     $(document).ready(function () {
