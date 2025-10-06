@@ -1039,7 +1039,7 @@
 
     function initButtonClick($btn) {
       const $buttons = getButtons();
-      document.on('click', getSelector(), function () {
+      $(document).on('click', getSelector(), function () {
         if ($btn.hasClass('processing')) {
           return false;
         }
