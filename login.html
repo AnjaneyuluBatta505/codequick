@@ -1007,8 +1007,12 @@
 
     // OBSERVE B2C VALIDATION TO REMOVE PROCESSING CLASS
 
+    function getSelector() {
+      return '#next, #continue, #emailVerificationControl_but_send_code, #emailVerificationControl_but_verify_code, #emailVerificationControl_but_change_claims, button[type="submit"]';
+    }
+
     function getButtons() {
-      const $buttons = $('#next, #continue, #emailVerificationControl_but_send_code, #emailVerificationControl_but_verify_code, #emailVerificationControl_but_change_claims, button[type="submit"]');
+      const $buttons = $(getSelector());
       return $buttons;
     }
 
@@ -1034,7 +1038,8 @@
     }
 
     function initButtonClick($btn) {
-      $btn.on('click', function () {
+      const $buttons = getButtons();
+      document.on('click', getSelector(), function () {
         if ($btn.hasClass('processing')) {
           return false;
         }
@@ -1056,11 +1061,7 @@
 
     // ADD PROCESSING CLASS TO BUTTONS WHEN CLICKED
     function initButtonProcessingAnimation() {
-      const $buttons = getButtons();
-      for(const btn of $buttons) {
-        const $btn = $(this);
-        initButtonClick($btn);
-      }
+      initButtonClick();
       observeB2CValidation();
       removeProcessingOnUnload();
       removeProcessingOnInputFocus();
