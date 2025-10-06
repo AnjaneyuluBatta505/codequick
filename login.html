@@ -1004,75 +1004,114 @@
         document.getElementById("password").focus();
       }
     }
+    class ButtonProcessingManager {
+      constructor() {
+        this.buttonSelector = '#next, #continue, #emailVerificationControl_but_send_code, #emailVerificationControl_but_verify_code, #emailVerificationControl_but_change_claims, button[type="submit"]';
+        this.processingKeySet = new Set();
+        this.init();
+      }
 
-    // OBSERVE B2C VALIDATION TO REMOVE PROCESSING CLASS
+      init() {
+        this.observeDOMChanges();
+        this.bindDelegatedClick();
+        this.bindInputFocus();
+        this.cleanupOnUnload();
+      }
 
-    function getSelector() {
-      return '#next, #continue, #emailVerificationControl_but_send_code, #emailVerificationControl_but_verify_code, #emailVerificationControl_but_change_claims, button[type="submit"]';
-    }
+      /** Helper — returns all current buttons */
+      getButtons() {
+        return Array.from(document.querySelectorAll(this.buttonSelector));
+      }
 
-    function getButtons() {
-      const $buttons = $(getSelector());
-      return $buttons;
-    }
+      /** Adds processing state */
+      addProcessing(btn) {
+        if (!btn) return;
+        const key = this.getButtonKey(btn);
+        this.processingKeySet.add(key);
+        btn.classList.add('processing');
+      }
 
-    function addProcessingHandler() {
-      $(document).off('click.processing').on('click.processing', getSelector(), function (e) {
-        const $btn = $(this);
-        if ($btn.hasClass('processing')) {
-          e.preventDefault();
-          e.stopImmediatePropagation();
-          return false;
-        }
-        $btn.addClass('processing');
-      });
-    }
+      /** Removes processing state */
+      removeProcessing(btn) {
+        if (!btn) return;
+        const key = this.getButtonKey(btn);
+        this.processingKeySet.delete(key);
+        btn.classList.remove('processing');
+      }
 
-    function removeProcessingClassFromButtons() {
-      const $buttons = getButtons();
-      for(const btn of $buttons) {
-        const $btn = $(btn);
-        $btn.removeClass('processing');
+      /** Remove from all buttons */
+      clearAllProcessing() {
+        this.getButtons().forEach((b) => b.classList.remove('processing'));
+        this.processingKeySet.clear();
+      }
+
+      /** Create stable key for the button */
+      getButtonKey(btn) {
+        return (
+          btn.id ||
+          btn.name ||
+          btn.getAttribute('data-processing-key') ||
+          btn.textContent.trim()
+        );
+      }
+
+      /** Observe B2C re-render + validation DOM updates */
+      observeDOMChanges() {
+        const apiElem = document.getElementById('api');
+        if (!apiElem) return;
+
+        const observer = new MutationObserver(() => {
+          const hasError = document.querySelector('#api .error, #api .field-error');
+          if (hasError) {
+            // Validation failed — remove processing class
+            this.clearAllProcessing();
+          } else {
+            // Re-apply to buttons that were processing before DOM update
+            this.getButtons().forEach((btn) => {
+              const key = this.getButtonKey(btn);
+              if (this.processingKeySet.has(key)) {
+                btn.classList.add('processing');
+              }
+            });
+          }
+        });
+
+        observer.observe(apiElem, { childList: true, subtree: true });
+      }
+
+      /** Delegated click handler */
+      bindDelegatedClick() {
+        document.addEventListener('click', (e) => {
+          const btn = e.target.closest(this.buttonSelector);
+          if (!btn) return;
+
+          if (btn.classList.contains('processing')) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+          }
+
+          this.addProcessing(btn);
+        });
+      }
+
+      /** Remove processing on any input focus or typing */
+      bindInputFocus() {
+        document.addEventListener('focusin', () => this.clearAllProcessing());
+        document.addEventListener('input', () => this.clearAllProcessing());
+      }
+
+      /** Safety: clear all before leaving page */
+      cleanupOnUnload() {
+        window.addEventListener('beforeunload', () => this.clearAllProcessing());
       }
     }
 
-    function observeB2CValidation() {
-      const apiElem = document.getElementById('api');
-      if (!apiElem) return;
-      const observer = new MutationObserver(() => {
-        const hasError = $('#api .error:visible, #api .field-error:visible').length > 0;
-        if (hasError) {
-          removeProcessingClassFromButtons();
-        }
-        // Reattach handlers after DOM mutations
-        addProcessingHandler();
-      });
-      observer.observe(apiElem, { childList: true, subtree: true });
-    }
+    // Initialize when document is ready
+    document.addEventListener('DOMContentLoaded', () => {
+      new ButtonProcessingManager();
+    });
 
-    function removeProcessingOnUnload() {
-      $(window).on('beforeunload', () => {
-        removeProcessingClassFromButtons();
-      });
-    }
-
-    function removeProcessingOnInputFocus(){
-      $(document).on('focus input', 'input, select', () => {
-        removeProcessingClassFromButtons();
-      });
-    }
-
-    // ADD PROCESSING CLASS TO BUTTONS WHEN CLICKED
-    function initButtonProcessingAnimation() {
-      addProcessingHandler();
-      observeB2CValidation();
-      removeProcessingOnInputFocus();
-      removeProcessingOnUnload();
-    }
-
-    $(document).ready(function () {
-      initButtonProcessingAnimation();
-    })
   </script>
 </body>
 
