@@ -1025,6 +1025,15 @@
       }
     }
 
+    function initButtonClick($btn) {
+      $btn.on('click', function () {
+        if ($btn.hasClass('processing')) {
+          return false;
+        }
+        $btn.addClass('processing');
+      });
+    }
+
     function removeProcessingOnUnload($btn) {
       $(window).on('beforeunload', () => $btn.removeClass('processing'));
     }
@@ -1038,17 +1047,13 @@
     // ADD PROCESSING CLASS TO BUTTONS WHEN CLICKED
     function initButtonProcessingAnimation() {
       const $buttons = getButtons();
-      $buttons.on('click', function () {
+      for(const btn of $buttons) {
         const $btn = $(this);
-        if ($btn.hasClass('processing')) {
-          return false;
-        }
-        // Add processing style
-        $btn.addClass('processing');
+        initButtonClick($btn);
         observeB2CValidation($btn);
         removeProcessingOnUnload($btn);
         removeProcessingOnInputFocus($btn);
-      });
+      }
     }
 
     $(document).ready(function () {
